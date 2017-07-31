@@ -6,7 +6,7 @@ export default class ODataToEntitiesConverter {
     private readonly edmTemplate;
     private moduleName;
     private typeMapping;
-    ODataToEntitiesConverter(moduleName?: string): void;
+    constructor(moduleName?: string);
     MapPrimitiveEdmTypes(): string;
     MapEdmClasses: (odataMetadata: string) => string;
     private MapEdmProperties;

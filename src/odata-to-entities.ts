@@ -34,7 +34,7 @@ export default class ODataToEntitiesConverter {
         'String': 'string'
     };
 
-    public ODataToEntitiesConverter(moduleName?: string) {
+    constructor(moduleName?: string) {
         this.moduleName = moduleName;
     }
 

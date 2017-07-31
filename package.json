@@ -16,9 +16,7 @@
     "typescript": "^2.1.5",
     "selenium-webdriver": "^3.5.0"
   },
-  "installable": true,
   "name": "odata.d.ts",
-  "preferGlobal": true,
   "repository": {
     "type": "git",
     "url": "git://github.com/YumaNick/odata.d.ts"
@@ -28,7 +26,8 @@
     "prepublish": "npm run build",
     "runConvert": "node lib/cli.js --metadataUri test/metadata.xml --out adaptibar.js --dts adaptibar.d.ts",
     "inspectServer": "node --inspect --inspect-brk lib/cli.js --metadataUri test/metadata.xml",
-    "nodeVersion": "node --version"
+    "nodeVersion": "node --version",
+    "npmPublish": "npm publish"
   },
-  "version": "0.0.1"
+  "version": "1.0.0"
 }

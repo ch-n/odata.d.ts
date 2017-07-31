@@ -26,15 +26,15 @@ if (argv.help) {
     yargs.showHelp();
     console.log('ERROR: The option --metadataUri is mandatory, you must define it.');
 } else {
+    let filename: string  = argv.dts || 'ODataEntities.d.ts';
+    let modulename : string = argv.module || 'ODataEntities';
+
     var writeFile = (text: string) => {
-        var odataConverter = new ODataToEntitiesConverter();
+        var odataConverter = new ODataToEntitiesConverter(modulename);
 
         var src = odataConverter.MapEdmClasses(text);
         fs.writeFileSync(filename, src, { encoding: 'utf8' });
     }
-
-    let filename = argv.module || 'ODataEntities.d.ts';
-    let modulename = argv.dts || 'ODataEntities';
 
     if (argv.metadataUri.indexOf('http:') == 0 || argv.metadataUri.indexOf('https:') == 0) {
         request({
