@@ -28,7 +28,7 @@ export default class ODataToEntitiesConverter {
         'Guid': 'string',
         'Int16': 'number',
         'Int32': 'number',
-        'Int64': 'string',
+        'Int64': 'number',
         'Byte': 'number',
         'SByte': 'number',
         'String': 'string'
