@@ -97,7 +97,7 @@ export default class ODataToEntitiesConverter {
                 propertyType = propertyType + "[]";
             }
 
-            properties = properties + this.propertyTemplate.replace("{property}", edmProperty.name).replace("{type}", propertyType);
+            properties = properties + "\n" + this.propertyTemplate.replace("{property}", edmProperty.name).replace("{type}", propertyType);
         });
 
         return properties;
