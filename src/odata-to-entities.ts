@@ -7,6 +7,7 @@ export default class ODataToEntitiesConverter {
     private readonly regEdmCollection: RegExp = /Collection\((.*?)\)/;
     private readonly propertyTemplate = "{property}: {type};";
     private readonly classTemplate = "export class {className} { {properties} }";
+    private readonly classWithInheritanceTemplate = "export class {className} extends {baseType} { {properties} }";
     private readonly typeTemplate = "type {edmType} = {tsType};";
     private readonly edmTemplate = "export module Edm { {types} }";
 
@@ -57,7 +58,18 @@ export default class ODataToEntitiesConverter {
             var properties = this.MapEdmProperties(entityType.properties, schema);
             properties = properties + this.MapEdmProperties(entityType.navigationProperties, schema);
 
-            classes = classes + this.classTemplate.replace("{className}", entityType.name).replace("{properties}", properties);
+            var classTemplate : string;
+
+            if (entityType.baseType) {
+                var namespace = (<oDataMetadata.Edm.Schema>entityType.parent).namespace;
+                var baseType = entityType.baseType.replace(namespace + ".", "");
+                
+                classTemplate = this.classWithInheritanceTemplate.replace("{baseType}", baseType);
+            } else {
+                classTemplate = this.classTemplate;
+            }
+
+            classes = classes + classTemplate.replace("{className}", entityType.name).replace("{properties}", properties);
         });
 
         let tsCodeEdmTypes: string = this.MapPrimitiveEdmTypes();

@@ -2,6 +2,7 @@ export default class ODataToEntitiesConverter {
     private readonly regEdmCollection;
     private readonly propertyTemplate;
     private readonly classTemplate;
+    private readonly classWithInheritanceTemplate;
     private readonly typeTemplate;
     private readonly edmTemplate;
     private moduleName;

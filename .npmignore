@@ -1,3 +1,5 @@
 .vs
+.vscode
 test
 odata.d.ts.sln
+yarn.lock
